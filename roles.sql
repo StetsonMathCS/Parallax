@@ -1,0 +1,27 @@
+-- Create the roles (ingest already exists)
+-- CREATE ROLE ingest LOGIN;
+CREATE ROLE reader LOGIN;
+CREATE ROLE metric LOGIN;
+
+-- Least privilege
+ALTER ROLE ingest NOSUPERUSER NOCREATEDB NOCREATEROLE;
+ALTER ROLE reader NOSUPERUSER NOCREATEDB NOCREATEROLE;
+ALTER ROLE metric NOSUPERUSER NOCREATEDB NOCREATEROLE;
+
+-- Only these roles can connect
+REVOKE CONNECT ON DATABASE parallax_db FROM PUBLIC;
+GRANT CONNECT ON DATABASE parallax_db TO ingest, reader, metric;
+
+-- raw table created by the admin, written by ingest
+CREATE SCHEMA raw;
+GRANT USAGE ON SCHEMA raw TO ingest, reader, metric;
+GRANT INSERT, SELECT ON ALL TABLES IN SCHEMA raw TO ingest;
+GRANT SELECT ON ALL TABLES IN SCHEMA raw TO reader, metric;
+ALTER DEFAULT PRIVILEGES IN SCHEMA raw GRANT INSERT, SELECT ON TABLES TO ingest;
+ALTER DEFAULT PRIVILEGES IN SCHEMA raw GRANT SELECT ON TABLES TO reader, metric;
+ALTER DEFAULT PRIVILEGES IN SCHEMA raw GRANT USAGE ON SEQUENCES TO ingest;
+
+-- metrics owned and written only by metric
+CREATE SCHEMA metrics AUTHORIZATION metric;
+GRANT USAGE ON SCHEMA metrics TO reader;
+ALTER DEFAULT PRIVILEGES FOR ROLE metric IN SCHEMA metrics GRANT SELECT ON TABLES TO reader;
