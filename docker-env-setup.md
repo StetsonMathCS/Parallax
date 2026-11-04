@@ -3,7 +3,7 @@ Create .env file
 Copy the existing .env.example and using openssl generate random passwords. The .env will be used by docker-compose to set the environment variables.
 
 ```bash
-cat > .env <<EOF
+cat >> .env <<EOF
 POSTGRES_USER=parallax
 POSTGRES_PASSWORD=$(openssl rand -hex 24)
 POSTGRES_DB=parallax_db
@@ -44,7 +44,7 @@ docker compose exec parallax-db psql -U n8n -d n8n -h 127.0.0.1 -c '\conninfo'
 ## New Roles
 
 ```bash
-cat > .env <<EOF
+cat >> .env <<EOF
 INGEST_USER=ingest
 INGEST_PASSWORD=$(openssl rand -hex 24)
 READER_USER=reader
