@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 DATA_DIR = Path(__file__).parent / "data"
 
 # Parameters for the API request
-ll_params = {
+ll2_params = {
     "limit": 10,
     "ordering": "last_updated"
 }
@@ -19,6 +19,7 @@ def ll2_api():
     """
     Fetches data from the SpaceDevs Launch Library 2 API and saves it to a file.
     Returns:
+        source_name (str): The name of the data source.
         fetched_at (datetime): The timestamp when the data was fetched.
         response.content (bytes): The raw content of the API response.
         out (Path): The path to the saved file.
@@ -31,7 +32,7 @@ def ll2_api():
         logging.info("Trying first Source: %s", api_url)
 
         # Save request
-        response = requests.get(api_url, params=ll_params, timeout=10)
+        response = requests.get(api_url, params=ll2_params, timeout=10)
 
         # Fetched timestamp in UTC
         fetched_at = datetime.now(timezone.utc)
@@ -48,7 +49,7 @@ def ll2_api():
 
         logging.info("Wrote to file")
 
-        return fetched_at, response.content, out
+        return "ll2", fetched_at, response.content, out
 
     except requests.RequestException as requestException:
         logging.error("LL2 fetch failed: %s", requestException)

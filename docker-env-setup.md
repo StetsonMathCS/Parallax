@@ -104,6 +104,7 @@ docker compose exec -T parallax-db psql -U parallax -d parallax_db -v ON_ERROR_S
 ```bash
 docker compose exec -it parallax-db psql -U parallax -d parallax_db
 ```
+
 ```psql
 \password reader # Done
 \password metric # Done
