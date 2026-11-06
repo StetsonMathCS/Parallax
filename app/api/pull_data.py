@@ -2,50 +2,64 @@ import logging , requests
 from pathlib import Path
 from datetime import datetime, timezone
 
+# Path to saved data files
 DATA_DIR = Path(__file__).parent / "data"
 
-
-def ll2_api():
-
-    ll_params = {
+# Parameters for the API request
+ll_params = {
     "limit": 10,
     "ordering": "last_updated"
 }
-        
+
+# API URL for the SpaceDevs Launch Library 2
+api_url = "https://ll.thespacedevs.com/2.3.0/launches/"
+
+
+def ll2_api():
+    """
+    Fetches data from the SpaceDevs Launch Library 2 API and saves it to a file.
+    Returns:
+        fetched_at (datetime): The timestamp when the data was fetched.
+        response.content (bytes): The raw content of the API response.
+        out (Path): The path to the saved file.
+    Raises:
+        requests.RequestException: If the API request fails.
+        Exception: For any other exceptions that may occur.
+    """
     try:
-        api_url = "https://ll.thespacedevs.com/2.3.0/launches/"
 
         logging.info("Trying first Source: %s", api_url)
 
+        # Save request
         response = requests.get(api_url, params=ll_params, timeout=10)
 
+        # Fetched timestamp in UTC
         fetched_at = datetime.now(timezone.utc)
 
-        if response.status_code == 200:
-            logging.info("Status: %s", response.status_code)
+        # Raise on HTTP errors
+        response.raise_for_status()
 
-            DATA_DIR.mkdir(exist_ok=True)
-            out = DATA_DIR / f"ll2_{fetched_at:%Y%m%dT%H%M%SZ}.json"
-            out.write_bytes(response.content)
+        logging.info("Status: %s", response.status_code)
 
-            logging.info("Wrote to file")
+        # Creates directory if it doesn't exist and save the response
+        DATA_DIR.mkdir(exist_ok=True)
+        out = DATA_DIR / f"ll2_{fetched_at:%Y%m%dT%H%M%SZ}.json"
+        out.write_bytes(response.content)
 
-        else:
-            logging.info("Status: %s", response.status_code)
+        logging.info("Wrote to file")
 
-        return fetched_at, out
+        return fetched_at, response.content, out
+
+    except requests.RequestException as requestException:
+        logging.error("LL2 fetch failed: %s", requestException)
+        raise
 
     except Exception as e:
-        logging.error(e)
+        logging.error("LL2 fetch failed: %s", e)
+        raise
 
 if __name__ == '__main__':
 
     logging.basicConfig(level=logging.DEBUG)
 
     ll2_api()
-
-    
-        
-
-
-
