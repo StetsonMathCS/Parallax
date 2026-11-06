@@ -110,3 +110,33 @@ docker compose exec -it parallax-db psql -U parallax -d parallax_db
 \password ingest # Already done
 \q
 ```
+
+## Raw record Schema
+
+```sql
+docker compose exec -T parallax-db psql -U parallax -d parallax_db -v ON_ERROR_STOP=1 < schema.sql
+```
+
+## Role verification
+
+```sql
+docker compose exec parallax-db psql
+ -U ingest -d parallax_db -h 127.0.0.1
+psql (18.6 (Debian 18.6-1.pgdg13+2))
+Type "help" for help.
+
+parallax_db=> INSERT INTO raw.launch_record (source_name, source_record_id, fetched_at, payload, payload_hash)
+VALUES ('test', 'x1', now(), '{}', repeat('a', 64));
+INSERT 0 1
+parallax_db=> SELECT id, source_name FROM raw.launch_record;
+ id | source_name
+----+-------------
+  1 | test
+(1 row)
+
+parallax_db=> UPDATE raw.launch_record SET source_name = 'intentionally_modified' WHERE id = 1;
+ERROR:  permission denied for table launch_record
+parallax_db=> DELETE FROM raw.launch_record WHERE id = 1;
+ERROR:  permission denied for table launch_record
+parallax_db=> \q
+```

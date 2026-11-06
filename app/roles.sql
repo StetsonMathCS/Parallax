@@ -1,7 +1,7 @@
 -- Create the roles (ingest already exists)
 -- CREATE ROLE ingest LOGIN;
-CREATE ROLE reader LOGIN;
-CREATE ROLE metric LOGIN;
+-- CREATE ROLE reader LOGIN;
+-- CREATE ROLE metric LOGIN;
 
 -- Least privilege
 ALTER ROLE ingest NOSUPERUSER NOCREATEDB NOCREATEROLE;
