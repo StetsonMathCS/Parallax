@@ -141,3 +141,7 @@ parallax_db=> DELETE FROM raw.launch_record WHERE id = 1;
 ERROR:  permission denied for table launch_record
 parallax_db=> \q
 ```
+
+## DB Record Verification
+
+`docker compose exec parallax-db psql -U parallax -d parallax_db -c "SELECT source_name, count(*) FROM raw.launch_records GROUP BY 1;"`

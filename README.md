@@ -10,26 +10,15 @@ Existing launch and spaceflight tracking applications ingest data through a vari
 
 ### Metrics
 
-Caculate degree from origin based on update patterns, similiarity of mistakes, and observed origin
-Confidence scoring should be based on observed and calculated degree from origin, number of sources in agreement, provenance of each source, 
+
 
 ### Pseudo Code
 
 Include source of data with each datum
 
-Variables:
-- Observed_Degree_From_Origin
-- Calculated_Degree_From_Origin
-- Data_Source
-- Timestamp
-- audit_hash
-- Confidence_Score
-- Provenance_Info
-- 
-
 ### Architecture
 
-PostgreSQL Database, Redis Cache, Flask API, Dockerized Deployment. The system will ingest data from multiple sources, caluclate predefined metrics, and store the data in a PostgreSQL database. The system will also provide an API for querying the data and retrieving the confidence score and provenance information for each datum.
+PostgreSQL Database, Dockerized Deployment. The system will ingest data from multiple sources, calculate predefined metrics, and store the data in a PostgreSQL database.
 
 PostgreSQL Database:
 

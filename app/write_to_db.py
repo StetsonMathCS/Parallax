@@ -3,18 +3,12 @@ import psycopg, logging, dotenv, os, json, hashlib
 from psycopg.types.json import Jsonb
 
 from api import pull_data
+from engine import hashing
 
 logging.basicConfig(level=logging.DEBUG)
 logging.info("Started Data ingest")
 
 dotenv.load_dotenv()
-
-def canonical_hash(launch):
-    """
-    Computes a canonical hash for a given launch record.
-    """
-    canon = json.dumps(launch, sort_keys=True, separators=(',', ':')).encode()
-    return hashlib.sha256(canon).hexdigest()
 
 source_name, fetched_at, response_content, out = pull_data.ll2_api()
 
@@ -44,11 +38,11 @@ with connection:
         connection.execute(
             """
             INSERT INTO raw.launch_records
-                (source_name, source_record_id, fetched_at, payload, payload_hash)
-            VALUES (%s, %s, %s, %s, %s)
+                (source_name, source_record_id, fetched_at, payload, payload_hash, content_hash)
+            VALUES (%s, %s, %s, %s, %s, %s)
             ON CONFLICT DO NOTHING;
             """,
-            (source_name, launch["id"], fetched_at, Jsonb(launch), canonical_hash(launch)),
+            (source_name, launch["id"], fetched_at, Jsonb(launch), hashing.canonical_hash(launch), hashing.content_hash(launch)),
         )
 
     logging.info("Data written to database successfully")
