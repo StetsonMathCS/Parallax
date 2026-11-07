@@ -7,7 +7,7 @@ DATA_DIR = Path(__file__).parent / "data"
 
 # Parameters for the API request
 ll2_params = {
-    "limit": 10,
+    "limit": 100,
     "ordering": "last_updated"
 }
 
