@@ -144,4 +144,27 @@ parallax_db=> \q
 
 ## DB Record Verification
 
+Logging output showing successful writes to DB and skipped content due to no change.
+
 `docker compose exec parallax-db psql -U parallax -d parallax_db -c "SELECT source_name, count(*) FROM raw.launch_records GROUP BY 1;"`
+
+ source_name | count
+-------------+-------
+ ll2         |   100
+(1 row)
+
+```bash
+DEBUG:__main__:Processing launch: 10
+DEBUG:__main__:Launch ID: e7a1e5ba-62fd-4f4d-9343-fa2cc0141904
+DEBUG:__main__:Previous hash for e7a1e5ba-62fd-4f4d-9343-fa2cc0141904: 8e98cdaee00d1f169131269a69bc64fafb8b58a298878a4f0b84e4d94eef8ee4
+INFO:engine.hashing:Hashing payload for launch record: e7a1e5ba-62fd-4f4d-9343-fa2cc0141904
+DEBUG:engine.hashing:Payload hash computed: 51c9ed6718bad6f504b258deeffe3021d9bfb5e08849ea9298491e1a8235e4c9
+INFO:engine.hashing:Hashing content for launch record: e7a1e5ba-62fd-4f4d-9343-fa2cc0141904
+INFO:engine.hashing:Hashing payload for launch record: e7a1e5ba-62fd-4f4d-9343-fa2cc0141904
+DEBUG:engine.hashing:Payload hash computed: cf9ee20e67b5592921e479cf777322fe024510a129c0b2d8778f0f1a0c517d9f
+DEBUG:engine.hashing:Content hash computed: cf9ee20e67b5592921e479cf777322fe024510a129c0b2d8778f0f1a0c517d9f
+INFO:engine.hashing:Hashing chain for launch record: e7a1e5ba-62fd-4f4d-9343-fa2cc0141904
+DEBUG:engine.hashing:Chain hash computed: 1f16910aaa0eed3b2f21331cbdc28df585c5a2456390248c60e01911ae553dd0
+DEBUG:__main__:Skipped launch e7a1e5ba-62fd-4f4d-9343-fa2cc0141904
+INFO:__main__:Data written to database successfully: 0 inserted, 10 skipped
+```

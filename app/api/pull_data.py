@@ -5,9 +5,11 @@ from datetime import datetime, timezone
 # Path to saved data files
 DATA_DIR = Path(__file__).parent / "data"
 
+logger = logging.getLogger(__name__)
+
 # Parameters for the API request
 ll2_params = {
-    "limit": 100,
+    "limit": 10,
     "ordering": "last_updated"
 }
 
@@ -29,7 +31,7 @@ def ll2_api():
     """
     try:
 
-        logging.info("Trying first Source: %s", api_url)
+        logger.info("Trying first Source: %s", api_url)
 
         # Save request
         response = requests.get(api_url, params=ll2_params, timeout=10)
@@ -40,23 +42,23 @@ def ll2_api():
         # Raise on HTTP errors
         response.raise_for_status()
 
-        logging.info("Status: %s", response.status_code)
+        logger.info("Status: %s", response.status_code)
 
         # Creates directory if it doesn't exist and save the response
         DATA_DIR.mkdir(exist_ok=True)
         out = DATA_DIR / f"ll2_{fetched_at:%Y%m%dT%H%M%SZ}.json"
         out.write_bytes(response.content)
 
-        logging.info("Wrote to file")
+        logger.info("Wrote to file")
 
         return "ll2", fetched_at, response.content, out
 
     except requests.RequestException as requestException:
-        logging.error("LL2 fetch failed: %s", requestException)
+        logger.error("LL2 fetch failed: %s", requestException)
         raise
 
     except Exception as e:
-        logging.error("LL2 fetch failed: %s", e)
+        logger.error("LL2 fetch failed: %s", e)
         raise
 
 if __name__ == '__main__':

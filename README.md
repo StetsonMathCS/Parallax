@@ -14,7 +14,19 @@ Existing launch and spaceflight tracking applications ingest data through a vari
 
 ### Pseudo Code
 
-Include source of data with each datum
+Ingestion:
+Get data from source - pull_data.py
+Include source of data with each datum - pull_data.py
+hash results and content - hashing.py
+Check for existing IDs - write_to_db
+previous hash is genesis where no record exists - write_to_db, GENESIS in hashing
+Chain hash becomes hash of payload, content and previous - hashing
+Write results to DB - write_to_db
+Unchanged content skipped - Handled by DB
+
+
+
+
 
 ### Architecture
 
