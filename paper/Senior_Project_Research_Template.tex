@@ -1,0 +1,231 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+%\pagestyle{empty}
+%\pagestyle{headings}%myheadings - specify \markboth{l}{r} or \markright commands
+%\pagenumbering{arabic}
+\textheight8.50in
+\textwidth6.55in
+\topmargin0.0in
+\headheight0.0in
+\oddsidemargin-0.25in
+\evensidemargin-0.25in
+\parindent.0in
+\parskip.2in
+%\setspacing{\singlespacing}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% my information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\myTitle}{Parallax - Trust Verification on Data Ingestion}
+\newcommand{\myAuthor}{Ernest Baker}
+\newcommand{\myPublicationYear}{2026}
+\newcommand{\myGraduationDate}{May 2027}
+\newcommand{\myAdvisorOne}{A.J. Scarlato}
+\newcommand{\myDepartment}{Mathematics and Computer Science}
+
+\newcommand{\bigName}[1]{
+   \begin{center}\fontfamily{phv}\selectfont\Huge\scshape#1\end{center}
+}
+
+\newcommand{\pageTitle}[1]{
+   \begin{center}#1\end{center}
+}
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newcommand{\eref}[1]{
+   (\ref{eq:#1})
+}
+
+\newcommand{\figref}[1]{
+Figure \ref{#1}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography information
+% (within bibliography)
+% \bibitem{LABEL} Bibliographical info here.
+%
+% (within text for citation)
+% \cite{LABEL}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+%----------------------------------------
+% TITLE PAGE
+%----------------------------------------
+%TITLE GOES HERE
+%[ If your title is more than one line, be sure to use single spacing between
+%lines ]
+\bigName{\myTitle}
+
+\vspace{2.25in}
+\begin{centering}
+By
+
+\myAuthor
+
+\vspace{2.25in}
+%[ required text at the bottom of the cover page ]
+\singlespacing
+A SENIOR RESEARCH PAPER PRESENTED TO THE DEPARTMENT OF MATHEMATICS AND COMPUTER
+SCIENCE OF STETSON UNIVERSITY IN PARTIAL FULFILLMENT OF THE REQUIREMENTS FOR THE
+DEGREE OF BACHELOR OF SCIENCE
+\singlespacing
+
+\vspace{.5in}
+
+STETSON UNIVERSITY
+
+\myPublicationYear
+\newpage
+
+%-----------------------------------------
+%ACKNOWLEDGMENT PAGE
+%-----------------------------------------
+\setcounter{section}{0}
+\subsection*{Acknowledgments}
+
+
+%[ Put your acknowledgments here.  Acknowledgments should be written in complete
+%sentences. ]
+\doublespacing
+Edit This Text.
+\doublespacing
+\newpage
+%------------------------------------------
+% TABLE OF CONTENTS
+%------------------------------------------
+\tableofcontents
+
+\newpage
+%------------------------------------------
+% TABLE OF TABLES
+%------------------------------------------
+\listoftables
+%
+%\newpage
+%------------------------------------------
+% TABLE OF FIGURES
+%------------------------------------------
+\listoffigures
+
+\newpage
+%------------------------------------------
+% ABSTRACT
+%------------------------------------------
+\subsection*{Abstract}
+
+\singlespacing
+\myTitle
+
+By
+
+\myAuthor
+
+\myGraduationDate
+
+\end{centering}
+
+\vspace{0.5in}
+
+Advisors: \myAdvisorOne
+
+Department: \myDepartment
+\singlespacing
+
+\vspace{0.5in}
+
+%The double-spaced text of the abstract begins here.  Note that the headings above should be single spaced.  The abstract should be a concise summary of the content of the paper, mentioning major results if possible.  It should be fully understandable without reference to the text.  It should not contain parenthetical or bracketed references.  Mathematical notation and symbols should be used sparingly, if at all.  Abstracts should not exceed 150 words.
+\doublespacing
+
+Edit This Text.
+
+\newpage
+%-----------------------------------------
+% Chapter 1
+%-----------------------------------------
+\section{Section Title}
+Edit This Test
+
+\subsection{Sub-Section Title}
+
+Edit This Text.
+
+\subsection{Sub-Section Title}
+
+Edit This Text.
+
+\subsection{Sub-Section Title}
+
+Edit This Text.
+
+\subsection{Sub-Section Title}
+
+Edit This Text.
+
+\section{Section Title}
+
+Edit This Text.
+%This is how to include Graphics. Be sure to uncomment each statement and have the figure in encapsulated postscript format.
+%\begin{figure}[h!]
+ %  \centering
+ %  \includegraphics[width=0.5\linewidth]{singleHat.eps}
+ %  \caption{A Single Hat Function $h = 0.4$}
+  % \label{h4}
+%\end{figure}
+
+\section{Section Title}
+
+Edit This Text.
+
+\section{Together at Last!}
+
+\subsection{Sub-Section Title}
+
+Edit This Text.
+
+\subsection{Sub-Section Title}
+
+Edit This Text.
+
+\subsection{Sub-Section Title}
+
+Edit This Text.
+
+\subsection{Sub-Section Title}
+
+Edit This Text.
+
+\subsection{Sub-Section Title}
+
+Edit This Text.
+%------------------------------------------
+% References
+%------------------------------------------
+%\section*{References}
+\begin{thebibliography}{77}   % start the bibliography
+\small
+
+\bibitem{PLACEHOLDER} PLACEHOLDER Kreyszig, Erwin.  \underline{Introductory Functional Analysis with Applications.}  Wiley Classics Library.  1989.
+
+\bibitem{PLACEHOLDER} PLACEHOLDER Cawood, M.E., V.J. Ervin, W.J. Layton, and J.M. Maubach.  \underline{Adaptive defect correction methods for convection dominated, convection diffusion problems}.  \textit{Journal of Computational and Applied Methematics}.  200.  1-21.
+
+\end{thebibliography}      % end the bibliography
+
+\newpage
+%------------------------------------------
+% Biographical Sketch
+%------------------------------------------
+\section*{Biographical Sketch}
+
+Edit This Text.
+
+\end{document}

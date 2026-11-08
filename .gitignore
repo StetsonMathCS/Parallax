@@ -3,3 +3,13 @@
 *.json
 
 __pycache__/
+
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.synctex.gz
+paper/*.lot
+paper/*.lof

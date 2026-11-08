@@ -1,30 +1,28 @@
 # Parallax - Spaceflight Tracking and Data Verification
 
-A spaceflight and launch-tracking system that combines multi-source verification, tamper-evident logging, and confidence scoring to provide a trustworthy, provenance view of launch and satellite telemetry data.
+A launch-tracking system that combines source verification, tamper-evident logging, and confidence scoring to provide a trustworthy, provenance view of launch telemetry data.
 
 ## Abstract
 
 Existing launch and spaceflight tracking applications ingest data through a variety of sources from governmental to private entities. This data, ingested and shared amongst each other, has no verifiable way to safeguard against data malformation originating from a corrupt input or data manipulated with malicious intent, potentially leading to a cascading data poisoning due to shared information. Our application seeks to resolve this by evaluating each piece of data against multiple data sources without assuming independence, creating a weighted confidence score. Tamper-evident logging as demonstrated by Crosby and Wallach 2009, protects the integrity of each record and what each source asserted. With the potential for multiple adversaries, it is possible that satellite data can be compromised before data is even logged as discussed by Tedeschi, Sciancalepore, and Pietro 2022. Our verification system should be able to distinguish from information that is inaccurate instead of merely just stale. This, in no way, indicates an ability to identify a compromised satellite based on ingested information.  By purposefully injecting malformed data, we will be able to measure detection rate and false positives through the confidence scoring mechanism allowing us to challenge the system in such a way to keep the system as a whole accurate and honest. As the goal is to provide accurate data, provenance is an important aspect of every data source. By logging what data came from where and when, we can establish our own provenance of a source over time, therefore weighting sources differently enhancing our confidence scoring system in a method described by Pan, Stakhanova, and Ray 2023, to describe the history and evolution of a data object. The goal is to provide a verified view that has been cross-checked and references other sources with a quantifiable confidence indicator.
 
+---
+
 ## Framework Outline
-
-### Metrics
-
-
 
 ### Pseudo Code
 
 Ingestion:
-Get data from source - pull_data.py
-Include source of data with each datum - pull_data.py
-hash results and content - hashing.py
-Check for existing IDs - write_to_db
-previous hash is genesis where no record exists - write_to_db, GENESIS in hashing
-Chain hash becomes hash of payload, content and previous - hashing
-Write results to DB - write_to_db
-Unchanged content skipped - Handled by DB
+- Get data from source - pull_data.py
+- Include source of data with each datum - pull_data.py
+- hash results and content - hashing.py
+- Check for existing IDs - write_to_db
+- previous hash is genesis where no record exists - write_to_db, GENESIS in hashing
+- Chain hash becomes hash of payload, content and previous - hashing
+- Write results to DB - write_to_db
+- Unchanged content skipped - Handled by DB, logged in write_to_db
 
-
+Metrics:
 
 
 
