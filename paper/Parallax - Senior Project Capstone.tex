@@ -23,7 +23,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % my information
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\myTitle}{Parallax - Trust Verification on Data Ingestion}
+\newcommand{\myTitle}{Parallax - Copy Detection on Ingested Data}
 \newcommand{\myAuthor}{Ernest Baker}
 \newcommand{\myPublicationYear}{2026}
 \newcommand{\myGraduationDate}{May 2027}
@@ -146,34 +146,21 @@ Department: \myDepartment
 %The double-spaced text of the abstract begins here.  Note that the headings above should be single spaced.  The abstract should be a concise summary of the content of the paper, mentioning major results if possible.  It should be fully understandable without reference to the text.  It should not contain parenthetical or bracketed references.  Mathematical notation and symbols should be used sparingly, if at all.  Abstracts should not exceed 150 words.
 \doublespacing
 
-Edit This Text.
+Existing launch and spaceflight tracking applications ingest data through a variety of sources from governmental to private entities.
+This data, ingested and shared amongst each other, has no verifiable way to safeguard against data malformation originating from a corrupt input or data manipulated with malicious intent, potentially leading to a cascading data poisoning due to shared information.
+Our application seeks to resolve this by evaluating each piece of data against multiple data sources without assuming independence.
+Tamper-evident logging protects the integrity of each record and what each source asserted.
+Our verification system should be able to distinguish from information that is inaccurate instead of merely just stale.
+By purposefully injecting malformed data, we will be able to measure detection rate and false positives through the copy detection mechanisms.
+As the goal is to provide accurate data, provenance is an important aspect of every data source.
+By logging what data came from where and when, we can establish our own provenance of a source over time, therefore weighting sources differently enhancing our system.
+The goal is to provide a verified view that has been cross-checked and references other sources with a quantifiable copy detection rate.
 
 \newpage
 %-----------------------------------------
 % Chapter 1
 %-----------------------------------------
-\section{Section Title}
-Edit This Test
 
-\subsection{Sub-Section Title}
-
-Edit This Text.
-
-\subsection{Sub-Section Title}
-
-Edit This Text.
-
-\subsection{Sub-Section Title}
-
-Edit This Text.
-
-\subsection{Sub-Section Title}
-
-Edit This Text.
-
-\section{Section Title}
-
-Edit This Text.
 %This is how to include Graphics. Be sure to uncomment each statement and have the figure in encapsulated postscript format.
 %\begin{figure}[h!]
  %  \centering
@@ -182,41 +169,42 @@ Edit This Text.
   % \label{h4}
 %\end{figure}
 
-\section{Section Title}
+\section{Introduction}
 
-Edit This Text.
+\section{Literature Review}
 
-\section{Together at Last!}
+\subsection{Trying to solve a similar problem}
 
-\subsection{Sub-Section Title}
+\section{Methodology}
 
-Edit This Text.
+\subsection{Containerization}
 
-\subsection{Sub-Section Title}
+\subsection{Database Architecture}
 
-Edit This Text.
+\subsection{Tamper Evident Logging}
 
-\subsection{Sub-Section Title}
+\subsection{Copy Detection}
 
-Edit This Text.
+\section{Results}
 
-\subsection{Sub-Section Title}
+\section{Discussion}
 
-Edit This Text.
-
-\subsection{Sub-Section Title}
-
-Edit This Text.
 %------------------------------------------
 % References
 %------------------------------------------
 %\section*{References}
+
+\newpage
+
 \begin{thebibliography}{77}   % start the bibliography
+
 \small
 
-\bibitem{PLACEHOLDER} PLACEHOLDER Kreyszig, Erwin.  \underline{Introductory Functional Analysis with Applications.}  Wiley Classics Library.  1989.
+\bibitem{Crosby,Wallach} Crosby, S.A., and D.S. Wallach.  \underline{Efficient data structures for tamper-evident logging}  In Proceedings of the 18th conference on USENIX security symposium (SSYM'09). \textit{USENIX Association}, USA, 317-334.
 
-\bibitem{PLACEHOLDER} PLACEHOLDER Cawood, M.E., V.J. Ervin, W.J. Layton, and J.M. Maubach.  \underline{Adaptive defect correction methods for convection dominated, convection diffusion problems}.  \textit{Journal of Computational and Applied Methematics}.  200.  1-21.
+\bibitem{Tedeschi,Sciancalepore,DiPietro} Tedeschi, P., S. Sciancalepore, and R. Di Pietro. \underline{Satellite-Based Communications Security: A Survey of Threats, Solutions, and Research Challenges}.  \textit{IEEE Communications Surveys and Tutorials}.  2022.
+
+\bibitem{Pan,Stakhanova,Ray} Pan, B., N. Stakhanova, and S. Ray.  \underline{Data Provenance in Security and Privacy}.  \textit{ACM Comput. Surv.} 55, 14s, Article 323 (December 2023), 35 pages. https://doi.org/10.1145/3593294
 
 \end{thebibliography}      % end the bibliography
 

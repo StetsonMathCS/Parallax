@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 # Parameters for the API request
 ll2_params = {
-    "limit": 10,
+    "limit": 100,
     "ordering": "last_updated"
 }
 
