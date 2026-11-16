@@ -23,7 +23,7 @@ def content_hash(launch):
     Computes a content hash for the content of a given launch record.
     """
 
-    logger.info("Hashing content for launch record: %s", launch.get("id"))
+    logger.info("Hashing content for launch record: %s", launch["id"])
 
     content = {key: launch[key] for key in ("id", "name", "net", "window_start", "window_end", "status", "rocket", "mission")}
     hashed_content = payload_hash(content)
@@ -37,7 +37,7 @@ def chain_hash(launch, prev_hash, payload_hash, content_hash):
     Computes a chain hash from the previous hash, payload, and content hashes.
     """
 
-    logger.info("Hashing chain for launch record: %s", launch.get("id"))
+    logger.info("Hashing chain for launch record: %s", launch["id"])
 
     hashed_chain = hashlib.sha256("|".join((prev_hash, payload_hash, content_hash)).encode()).hexdigest()
 

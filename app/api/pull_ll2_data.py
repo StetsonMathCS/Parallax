@@ -10,11 +10,12 @@ logger = logging.getLogger(__name__)
 # Parameters for the API request
 ll2_params = {
     "limit": 100,
-    "ordering": "last_updated"
+    "offset": 0,
+    "ordering": "-last_updated"
 }
 
 # API URL for the SpaceDevs Launch Library 2
-api_url = "https://ll.thespacedevs.com/2.3.0/launches/"
+api_url = "https://lldev.thespacedevs.com/2.3.0/launches/"
 
 
 def ll2_api():
@@ -24,7 +25,6 @@ def ll2_api():
         source_name (str): The name of the data source.
         fetched_at (datetime): The timestamp when the data was fetched.
         response.content (bytes): The raw content of the API response.
-        out (Path): The path to the saved file.
     Raises:
         requests.RequestException: If the API request fails.
         Exception: For any other exceptions that may occur.
@@ -51,7 +51,7 @@ def ll2_api():
 
         logger.info("Wrote to file")
 
-        return "ll2", fetched_at, response.content, out
+        return "ll2", fetched_at, response.content
 
     except requests.RequestException as requestException:
         logger.error("LL2 fetch failed: %s", requestException)
