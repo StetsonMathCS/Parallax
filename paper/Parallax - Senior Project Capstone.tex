@@ -1,0 +1,248 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+%\pagestyle{empty}
+%\pagestyle{headings}%myheadings - specify \markboth{l}{r} or \markright commands
+%\pagenumbering{arabic}
+\textheight8.50in
+\textwidth6.55in
+\topmargin0.0in
+\headheight0.0in
+\oddsidemargin-0.25in
+\evensidemargin-0.25in
+\parindent.0in
+\parskip.2in
+%\setspacing{\singlespacing}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% my information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\myTitle}{Parallax - Copy Detection on Ingested Data}
+\newcommand{\myAuthor}{Ernest Baker}
+\newcommand{\myPublicationYear}{2026}
+\newcommand{\myGraduationDate}{May 2027}
+\newcommand{\myAdvisorOne}{A.J. Scarlato}
+\newcommand{\myDepartment}{Mathematics and Computer Science}
+
+\newcommand{\bigName}[1]{
+   \begin{center}\fontfamily{phv}\selectfont\Huge\scshape#1\end{center}
+}
+
+\newcommand{\pageTitle}[1]{
+   \begin{center}#1\end{center}
+}
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newcommand{\eref}[1]{
+   (\ref{eq:#1})
+}
+
+\newcommand{\figref}[1]{
+Figure \ref{#1}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography information
+% (within bibliography)
+% \bibitem{LABEL} Bibliographical info here.
+%
+% (within text for citation)
+% \cite{LABEL}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+%----------------------------------------
+% TITLE PAGE
+%----------------------------------------
+%TITLE GOES HERE
+%[ If your title is more than one line, be sure to use single spacing between
+%lines ]
+\bigName{\myTitle}
+
+\vspace{2.25in}
+\begin{centering}
+By
+
+\myAuthor
+
+\vspace{2.25in}
+%[ required text at the bottom of the cover page ]
+\singlespacing
+A SENIOR RESEARCH PAPER PRESENTED TO THE DEPARTMENT OF MATHEMATICS AND COMPUTER
+SCIENCE OF STETSON UNIVERSITY IN PARTIAL FULFILLMENT OF THE REQUIREMENTS FOR THE
+DEGREE OF BACHELOR OF SCIENCE
+\singlespacing
+
+\vspace{.5in}
+
+STETSON UNIVERSITY
+
+\myPublicationYear
+\newpage
+
+%-----------------------------------------
+%ACKNOWLEDGMENT PAGE
+%-----------------------------------------
+\setcounter{section}{0}
+\subsection*{Acknowledgments}
+
+
+%[ Put your acknowledgments here.  Acknowledgments should be written in complete
+%sentences. ]
+\doublespacing
+Edit This Text.
+\doublespacing
+\newpage
+%------------------------------------------
+% TABLE OF CONTENTS
+%------------------------------------------
+\tableofcontents
+
+\newpage
+%------------------------------------------
+% TABLE OF TABLES
+%------------------------------------------
+\listoftables
+%
+%\newpage
+%------------------------------------------
+% TABLE OF FIGURES
+%------------------------------------------
+\listoffigures
+
+\newpage
+%------------------------------------------
+% ABSTRACT
+%------------------------------------------
+\subsection*{Abstract}
+
+\singlespacing
+\myTitle
+
+By
+
+\myAuthor
+
+\myGraduationDate
+
+\end{centering}
+
+\vspace{0.5in}
+
+Advisors: \myAdvisorOne
+
+Department: \myDepartment
+\singlespacing
+
+\vspace{0.5in}
+
+%The double-spaced text of the abstract begins here.  Note that the headings above should be single spaced.  The abstract should be a concise summary of the content of the paper, mentioning major results if possible.  It should be fully understandable without reference to the text.  It should not contain parenthetical or bracketed references.  Mathematical notation and symbols should be used sparingly, if at all.  Abstracts should not exceed 150 words.
+\doublespacing
+
+Existing launch and spaceflight tracking applications ingest data through a variety of sources from governmental to private entities.
+This data, ingested and shared amongst each other, has no verifiable way to safeguard against data malformation originating from a corrupt input or data manipulated with malicious intent, potentially leading to a cascading data poisoning due to shared information.
+Our application seeks to resolve this by evaluating each piece of data against multiple data sources without assuming independence.
+Tamper-evident logging protects the integrity of each record and what each source asserted.
+Our verification system should be able to distinguish from information that is inaccurate instead of merely just stale.
+By purposefully injecting malformed data, we will be able to measure detection rate and false positives through the copy detection mechanisms.
+As the goal is to provide accurate data, provenance is an important aspect of every data source.
+By logging what data came from where and when, we can establish our own provenance of a source over time, therefore weighting sources differently enhancing our system.
+The goal is to provide a verified view that has been cross-checked and references other sources with a quantifiable copy detection rate.
+
+\newpage
+%-----------------------------------------
+% Chapter 1
+%-----------------------------------------
+
+%This is how to include Graphics. Be sure to uncomment each statement and have the figure in encapsulated postscript format.
+%\begin{figure}[h!]
+ %  \centering
+ %  \includegraphics[width=0.5\linewidth]{singleHat.eps}
+ %  \caption{A Single Hat Function $h = 0.4$}
+  % \label{h4}
+%\end{figure}
+
+\section{Introduction}
+
+\section{Literature Review}
+
+\subsection{Trying to solve a similar problem}
+
+\section{Methodology}
+
+\subsection{Containerization}
+
+\subsection{Database Architecture}
+
+\subsection{Tamper Evident Logging}
+
+\subsection{Copy Detection}
+
+\section{Results}
+
+\section{Discussion}
+
+\newpage
+
+%------------------------------------------
+% Introduction
+%------------------------------------------
+\section{Introduction}
+
+
+Launch tracking is a niche subject with few diverse data providers. As such they
+
+%------------------------------------------
+% Methodology
+%------------------------------------------
+
+\section{Methodology}
+
+\subsection{Data Sources}
+
+The table shows data sources from the web. Only data from Launch Library 2 was used.
+
+\begin{table}
+   \begin{tabular}{cccc}
+         Launch Library 2 & source & source &
+   \end{tabular}
+   \caption{Figure 1 Launch Data Sources}
+\end{table}
+
+%------------------------------------------
+% References
+%------------------------------------------
+\section*{References}
+
+\newpage
+
+\begin{thebibliography}{77}   % start the bibliography
+
+\small
+
+\bibitem{Crosby,Wallach} Crosby, S.A., and D.S. Wallach.  \underline{Efficient data structures for tamper-evident logging}  In Proceedings of the 18th conference on USENIX security symposium (SSYM'09). \textit{USENIX Association}, USA, 317-334.
+
+\bibitem{Tedeschi,Sciancalepore,DiPietro} Tedeschi, P., S. Sciancalepore, and R. Di Pietro. \underline{Satellite-Based Communications Security: A Survey of Threats, Solutions, and Research Challenges}.  \textit{IEEE Communications Surveys and Tutorials}.  2022.
+
+\bibitem{Pan,Stakhanova,Ray} Pan, B., N. Stakhanova, and S. Ray.  \underline{Data Provenance in Security and Privacy}.  \textit{ACM Comput. Surv.} 55, 14s, Article 323 (December 2023), 35 pages. https://doi.org/10.1145/3593294
+
+\bibitem{Dong,Berti,Srivasta} Xin Luna Dong, Laure Berti-Equille, and Divesh Srivastava. 2009. Integrating conflicting data: the role of source dependence. Proc. VLDB Endow. 2, 1 (August 2009), 550–561. https://doi.org/10.14778/1687627.1687690
+
+\end{thebibliography}      % end the bibliography
+
+\newpage
+%------------------------------------------
+% Biographical Sketch
+%------------------------------------------
+\section*{Biographical Sketch}
+
+Edit This Text.
+
+\end{document}

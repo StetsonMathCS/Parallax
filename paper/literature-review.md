@@ -32,7 +32,7 @@ https://hackaday.io/project/1340/logs?sort=newest&page=2
 
 ## Literature Review of Applicable Accademic Research
 
-This paper studies the impact of false data injection attacks on state estimation in electric power grids. Most of the discussion is focused on the power grid, but the concepts are applicable. The authors take a novel approach in applying an ellipsoidal algorithm to computer upper and lower bounds of such data sets, thereby making it more difficult for an attacker to inject false data into the system. 
+This paper studies the impact of false data injection attacks on state estimation in electric power grids. Most of the discussion is focused on the power grid, but the concepts are applicable. The authors take a novel approach in applying an ellipsoidal algorithm to computer upper and lower bounds of such data sets, thereby making it more difficult for an attacker to inject false data into the system.
 
 **Elipsoid Algorithm** is a mathematical method that uses ellipsoids to approximate the feasible range of a set of points.
 
