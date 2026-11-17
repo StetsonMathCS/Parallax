@@ -3,7 +3,7 @@ CREATE TABLE raw.launch_records (
     source_name      TEXT        NOT NULL,
     source_record_id TEXT        NOT NULL,
     fetched_at       TIMESTAMPTZ  NOT NULL,
-    payload          JSONB       NOT NULL,
+    payload          JSON       NOT NULL,
     payload_hash     CHAR(64)    NOT NULL,
     content_hash     CHAR(64)   NOT NULL,
     prev_hash         CHAR(64),
