@@ -1,16 +1,14 @@
-import psycopg, logging, dotenv, os, json
+import logging, json
 from datetime import datetime, timezone
-
-from api import pull_ll2_data
-from engine import hashing
-from helper import synth_copy
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-logger.info("Started Data ingest")
+from api import pull_ll2_data
+from engine import hashing
+from helper import synth_copy, connect_to_db
 
-dotenv.load_dotenv()
+logger.info("Started Data ingest")
 
 def get_ll2_data():
     source_name, fetched_at, response_content = pull_ll2_data.ll2_api()
@@ -37,15 +35,9 @@ def get_second_src():
 def write_to_db(launches, source_name, fetched_at):
 
     # Database connection properties
-    connection = psycopg.connect(
-        host=os.environ["DB_HOST"],
-        port=os.environ["DB_PORT"],
-        dbname=os.environ["POSTGRES_DB"],
-        user=os.environ["INGEST_USER"],
-        password=os.environ["INGEST_PASSWORD"],
-    )
+    connection = connect_to_db.ingest_user()
 
-    logger.debug("Connected to database")
+    logger.info("Connected to database")
 
     with connection:
         logger.info("Starting data insertion")
@@ -106,8 +98,8 @@ if __name__ == "__main__":
     logger.info("Starting database write process")
     logger.info("Fetching LL2 data")
     get_ll2_data()
-    logger.info("Fetching synthetic copy data")
-    get_synth_copy()
-    logger.info("Fetching synthetic second source data")
-    get_second_src()
-    logger.info("Database write process completed")
+    #logger.info("Fetching synthetic copy data")
+    #get_synth_copy()
+    #logger.info("Fetching synthetic second source data")
+    #get_second_src()
+    #logger.info("Database write process completed")

@@ -3,7 +3,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 # Path to saved data files
-DATA_DIR = Path(__file__).parent / "data"
+DATA_DIR = Path(__file__).parent / "data/ll2prod"
 
 logger = logging.getLogger(__name__)
 
@@ -15,7 +15,7 @@ ll2_params = {
 }
 
 # API URL for the SpaceDevs Launch Library 2
-api_url = "https://lldev.thespacedevs.com/2.3.0/launches/"
+api_url = "https://ll.thespacedevs.com/2.3.0/launches/"
 
 
 def ll2_api():
@@ -46,12 +46,12 @@ def ll2_api():
 
         # Creates directory if it doesn't exist and save the response
         DATA_DIR.mkdir(exist_ok=True)
-        out = DATA_DIR / f"ll2_{fetched_at:%Y%m%dT%H%M%SZ}.json"
+        out = DATA_DIR / f"ll2_dev_{fetched_at:%Y%m%dT%H%M%SZ}.json"
         out.write_bytes(response.content)
 
         logger.info("Wrote to file")
 
-        return "ll2", fetched_at, response.content
+        return "ll2_prod", fetched_at, response.content
 
     except requests.RequestException as requestException:
         logger.error("LL2 fetch failed: %s", requestException)
