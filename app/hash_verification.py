@@ -258,10 +258,10 @@ def previous_hash_verification():
 
 if __name__ == "__main__":
 
-    #payload_hash_verification()
+    payload_hash_verification()
 
-    #content_hash_verification()
+    content_hash_verification()
 
-    #chain_hash_verification()
+    chain_hash_verification()
 
     previous_hash_verification()
