@@ -2,7 +2,11 @@
 
 EJ Baker
 
-## Abstract
+## Abstract - Copy Edit
+
+Data ingestion through API is a common practice and generally thought of as secure due to the intentional nature of the request. What do we do then when we have little variation in data sources? Existing launch and spaceflight applications have little variation in data source and they often share data. This data has no verifiable way to safeguard against data malformation originating from a corrupt input or data manipulated with malicious intent, potentially leading to a cascading data poisoning due to shared information. By applying content hashing, source provenance tracking, and copy detection, we are able to describe what a source said, when they said and and what was copied.
+
+## Abstract - Draft
 
 Existing launch and spaceflight tracking applications ingest data through a variety of sources from governmental to private entities. This data, ingested and shared amongst each other, has no verifiable way to safeguard against data malformation originating from a corrupt input or data manipulated with malicious intent, potentially leading to a cascading data poisoning due to shared information. Our application seeks to resolve this by evaluating each piece of data against multiple data sources without assuming independence, creating a weighted confidence score. Tamper-evident logging as demonstrated by Crosby and Wallach 2009, protects the integrity of each record and what each source asserted. With the potential for multiple adversaries, it is possible that satellite data can be compromised before data is even logged as discussed by Tedeschi, Sciancalepore, and Pietro 2022. Our verification system should be able to distinguish from information that is inaccurate instead of merely just stale. This, in no way, indicates an ability to identify a compromised satellite based on ingested information.  By purposefully injecting malformed data, we will be able to measure detection rate and false positives through the confidence scoring mechanism allowing us to challenge the system in such a way to keep the system as a whole accurate and honest. As the goal is to provide accurate data, provenance is an important aspect of every data source. By logging what data came from where and when, we can establish our own provenance of a source over time, therefore weighting sources differently enhancing our confidence scoring system in a method described by Pan, Stakhanova, and Ray 2023, to describe the history and evolution of a data object. The goal is to provide a verified view that has been cross-checked and references other sources with a quantifiable confidence indicator.
 
@@ -22,9 +26,9 @@ I have rejected multiple suggestions from Opus, keeping my work my own and not g
 
 Sonnet 5.5, Anthropic, used in docker command review
 
+---
 
-
-Citations
+## Citations
 
 Scott A. Crosby and Dan S. Wallach. 2009. Efficient data structures for tamper-evident logging. In Proceedings of the 18th conference on USENIX security symposium (SSYM'09). USENIX Association, USA, 317–334.
 
