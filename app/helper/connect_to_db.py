@@ -32,3 +32,18 @@ def reader_user():
         )
     except:
         logger.error("Failed to connect to database")
+
+
+def postgres_user():
+    logger.info("Connecting to database")
+    try:
+        logger.info("Attempting to connect to database as postgres user")
+        return psycopg.connect(
+            host=os.environ["DB_HOST"],
+            port=os.environ["DB_PORT"],
+            dbname=os.environ["POSTGRES_DB"],
+            user=os.environ["POSTGRES_USER"],
+            password=os.environ["POSTGRES_PASSWORD"],
+        )
+    except:
+        logger.error("Failed to connect to database")

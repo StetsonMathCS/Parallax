@@ -1,4 +1,4 @@
-import logging, json
+import logging
 
 from pathlib import Path
 from datetime import datetime
@@ -51,22 +51,25 @@ def payload_hash_verification():
                 logger.error("Launch ID %s has a hash mismatch", stored_record[0])
                 logger.debug(payload)
                 mismatch += 1
-                misses.append(stored_record)
+                misses.append(source_record_id)
 
             checked += 1
 
         except Exception as e:
             logger.error("Error occurred while checking hashes: %s", str(e))
+            logger.debug(payload)
+            mismatch += 1
+            misses.append(source_record_id)
 
     logger.info("Final counts: %s Misses out of %s", mismatch, checked)
 
-    if checked != len(stored_records):
-        logger.error("Did not check %s records", len(stored_records) - checked)
-        logger.error("Missing records: %s", [record[0] for record in stored_records[checked:]])
-
-    elif mismatch != 0:
-        logger.info(f"{misses}")
-        logger.error("Hash mismatches found in the above records")
+    if checked != len(stored_records) or mismatch != 0:
+        if checked != len(stored_records):
+            logger.error("Did not check %s records", len(stored_records) - checked)
+            logger.error("Missing records: %s", [record[0] for record in stored_records[checked:]])
+        if mismatch != 0:
+            logger.info(f"{misses}")
+            logger.error("Payload hash mismatch found in the above records")
 
     else:
         logger.info("All payloads passed")
@@ -113,22 +116,26 @@ def content_hash_verification():
                 logger.error("Launch ID %s has a hash mismatch", stored_record[0])
                 logger.debug(launch)
                 mismatch += 1
-                misses.append(stored_record)
+                misses.append(source_record_id)
+
 
             checked += 1
 
         except Exception as e:
             logger.error("Error occurred while checking hashes: %s", str(e))
+            logger.debug(launch)
+            mismatch += 1
+            misses.append(source_record_id)
 
     logger.info("Final counts: %s Misses out of %s", mismatch, checked)
 
-    if checked != len(stored_records):
-        logger.error("Did not check %s records", len(stored_records) - checked)
-        logger.error("Missing records: %s", [record[0] for record in stored_records[checked:]])
-
-    elif mismatch != 0:
-        logger.info(f"{misses}")
-        logger.error("Hash mismatches found in the above records")
+    if checked != len(stored_records) or mismatch != 0:
+        if checked != len(stored_records):
+            logger.error("Did not check %s records", len(stored_records) - checked)
+            logger.error("Missing records: %s", [record[0] for record in stored_records[checked:]])
+        if mismatch != 0:
+            logger.info(f"{misses}")
+            logger.error("Content hash mismatch found in the above records")
 
     else:
         logger.info("All content passed")
@@ -172,22 +179,25 @@ def chain_hash_verification():
                 logger.error("Launch ID %s has a hash mismatch", stored_record[0])
                 logger.debug(launch)
                 mismatch += 1
-                misses.append(stored_record)
+                misses.append(source_record_id)
 
             checked += 1
 
         except Exception as e:
             logger.error("Error occurred while checking hashes: %s", str(e))
+            logger.debug(launch)
+            mismatch += 1
+            misses.append(source_record_id)
 
     logger.info("Final counts: %s Misses out of %s", mismatch, checked)
 
-    if checked != len(stored_records):
-        logger.error("Did not check %s records", len(stored_records) - checked)
-        logger.error("Missing records: %s", [record[0] for record in stored_records[checked:]])
-
-    elif mismatch != 0:
-        logger.info(f"{misses}")
-        logger.error("Hash mismatches found in the above records")
+    if checked != len(stored_records) or mismatch != 0:
+        if checked != len(stored_records):
+            logger.error("Did not check %s records", len(stored_records) - checked)
+            logger.error("Missing records: %s", [record[0] for record in stored_records[checked:]])
+        if mismatch != 0:
+            logger.info(f"{misses}")
+            logger.error("Chain hash mismatch found in the above records")
 
     else:
         logger.info("All chains passed")
@@ -241,16 +251,19 @@ def previous_hash_verification():
 
         except Exception as e:
             logger.exception("Error occurred while checking hashes: %s", str(e))
+            logger.debug(source_record_id)
+            mismatch += 1
+            misses.append(source_record_id)
 
-    logger.info("Final counts: %s Misses out of %s", mismatch, checked)
+    logger.info("Previous hash counts: %s Misses out of %s", mismatch, checked)
 
-    if checked != len(stored_records):
-        logger.error("Did not check %s records", len(stored_records) - checked)
-        logger.error("Missing records: %s", [record[0] for record in stored_records[checked:]])
-
-    elif mismatch != 0:
-        logger.info(f"{misses}")
-        logger.error("Hash mismatches found in the above records")
+    if checked != len(stored_records) or mismatch != 0:
+        if checked != len(stored_records):
+            logger.error("Did not check %s records", len(stored_records) - checked)
+            logger.error("Missing records: %s", [record[0] for record in stored_records[checked:]])
+        if mismatch != 0:
+            logger.info(f"{misses}")
+            logger.error("Hash mismatch for prev_hash found in the above records")
 
     else:
         logger.info("All previous hashes passed")
