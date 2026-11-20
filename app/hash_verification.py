@@ -165,6 +165,21 @@ def chain_hash_verification():
     for stored_record in stored_records:
         try:
             source_record_id, launch, payload_hash, content_hash, prev_hash, chain_hash = stored_record
+            checked += 1
+
+            if hashing.payload_hash(launch) != payload_hash:
+                logger.error("Launch ID %s has a payload hash mismatch", stored_record[0])
+                logger.debug(launch)
+                mismatch += 1
+                misses.append(source_record_id)
+                continue
+
+            if hashing.content_hash(launch) != content_hash:
+                logger.error("Launch ID %s has a content hash mismatch", stored_record[0])
+                logger.debug(launch)
+                mismatch += 1
+                misses.append(source_record_id)
+                continue
 
             logger.debug("Checking launch ID: %s", source_record_id)
 
@@ -180,8 +195,6 @@ def chain_hash_verification():
                 logger.debug(launch)
                 mismatch += 1
                 misses.append(source_record_id)
-
-            checked += 1
 
         except Exception as e:
             logger.error("Error occurred while checking hashes: %s", str(e))
